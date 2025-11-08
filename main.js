@@ -1,12 +1,7 @@
-function log(msg) {
-    const debugDiv = document.querySelector("#debug");
-    debugDiv.children[0].innerText += "\n" + msg;
-}
-log("Script main.js chargé et fonction log opérationnelle.")
 const canvas = document.querySelector("#renderCanvas");
 
 const engine = new BABYLON.Engine(canvas, true); 
-log("Moteur babylon initialisé. createScene va suivre.")
+
 const createScene = () => {
     /* Scene: */
     const scene = new BABYLON.Scene(engine);
@@ -58,9 +53,9 @@ const createScene = () => {
 
     return scene;
 };
-log("createSceme définie");
+
 const scene = createScene();
-log("scene créée");
+
 engine.runRenderLoop(() => scene.render());
 
 window.addEventListener("resize", () => {
