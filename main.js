@@ -11,7 +11,7 @@ const createScene = () => {
     const light = new BABYLON.HemisphericLight("light", new BABYLON.Vector3(0, 1, 0), scene);
 
     /* Ground: */
-    const ground = BABYLON.MexhBuilder.CreateGround("ground", {width: 50, height: 50}, scene);
+    const ground = BABYLON.MeshBuilder.CreateGround("ground", {width: 50, height: 50}, scene);
 
     /* Player: */
     const player = BABYLON.MeshBuilder.CreateBox("player", {size: 1}, scene);
@@ -47,7 +47,7 @@ const createScene = () => {
         const playerSpeed = 0.1;
         if (inputs.forward) player.position.z += playerSpeed;
         if (inputs.back) player.position.z -= playerSpeed;
-        if (inputs.left) player.posistion.x -= playerSpeed;
+        if (inputs.left) player.position.x -= playerSpeed;
         if (inputs.right) player.position.x += playerSpeed;
     });
 
