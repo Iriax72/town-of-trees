@@ -11,3 +11,14 @@ body html{
     height: 100vh;
     display: block;
 }
+
+#debug {
+    position: fixed;
+    width: 100%;
+    bottom: 0;
+    background-color: black;
+    color:white;
+    font-family: monospace;
+    font-size: 1rem;
+    padding: 8px;
+}
