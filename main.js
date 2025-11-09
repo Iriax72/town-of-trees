@@ -1,3 +1,12 @@
+function isUserMobile() {
+    const ua = navigator.userAgent || navigator.vendor || window.opera;
+    const touch = 'ontouchstart' in window || navigator.maxTouchPoints > 0;
+    const smallScreen = window.matchMedia("(max-width: 768px)").matches;
+
+    const mobileRegex = /Android|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i;
+    return mobileRegex.test(ua) || (touch && smallScreen);
+}
+
 const canvas = document.querySelector("#renderCanvas");
 
 const engine = new BABYLON.Engine(canvas, true); 
@@ -26,20 +35,35 @@ const createScene = () => {
     camera.cameraAcceleration = 0.05;
     camera.maxCameraSpeed = 10;
     
+    /* ATH: */
+    const ui = BABYLON.GUI.AdvencedDynamicTexture.CreateFullscreenUI("UI");
+
     /* Inputs: */
     const inputs = {forward: false, back: false, left: false, right: false};
-    window.addEventListener("keydown", (e) => {
-        if (e.key === "z" || e.key === "ArrowUp") inputs.forward = true;
-        if (e.key === "s" || e.key === "ArrowDown") inputs.back = true;
-        if (e.key === "q" || e.key === "ArrowLeft") inputs.left = true;
-        if (e.key === "d" || e.key === "ArrowRight") inputs.right = true;
-    });
-    window.addEventListener("keyup", (e) => {
-        if (e.key === "z" || e.key === "ArrowUp") inputs.forward = false;
-        if (e.key === "s" || e.key === "ArrowDown") inputs.back = false;
-        if (e.key === "q" || e.key === "ArrowLeft") inputs.left = false
-        if (e.key === "d" || e.key === "ArrowRight") inputs.right = false;
-    });
+    if (isUserMobile()) {
+        const joystickBase = new BABYLON.GUI.Ellipse();
+        joystickBase.width = "100px";
+        joystickBase.height = "100px";
+        joystickBase.background = "grey";
+        joystickBase.thickness = 0;
+        joystickBase.left = "30px";
+        joystickBase.bottom = "30px";
+        joystickBase.alpha = 40;
+    } 
+    else {
+        window.addEventListener("keydown", (e) => {
+            if (e.key === "z" || e.key === "ArrowUp") inputs.forward = true;
+            if (e.key === "s" || e.key === "ArrowDown") inputs.back = true;
+            if (e.key === "q" || e.key === "ArrowLeft") inputs.left = true;
+            if (e.key === "d" || e.key === "ArrowRight") inputs.right = true;
+        });
+        window.addEventListener("keyup", (e) => {
+            if (e.key === "z" || e.key === "ArrowUp") inputs.forward = false;
+            if (e.key === "s" || e.key === "ArrowDown") inputs.back = false;
+            if (e.key === "q" || e.key === "ArrowLeft") inputs.left = false
+            if (e.key === "d" || e.key === "ArrowRight") inputs.right = false;
+        });
+    }
 
     /* MaJ of the player's position */
     scene.onBeforeRenderObservable.add(() => {
