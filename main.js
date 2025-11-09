@@ -25,7 +25,6 @@ const createScene = () => {
     camera.rotationOffset = 0;
     camera.cameraAcceleration = 0.05;
     camera.maxCameraSpeed = 10;
-    camera.attachControl(canvas, true);
     
     /* Inputs: */
     const inputs = {forward: false, back: false, left: false, right: false};
