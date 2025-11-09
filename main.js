@@ -34,14 +34,10 @@ const createScene = () => {
     camera.rotationOffset = 0;
     camera.cameraAcceleration = 0.05;
     camera.maxCameraSpeed = 10;
-    alert("ath a venir")
+    
     /* ATH: */
-    try{
-        const ui = BABYLON.GUI.AdvancedDynamicTexture.CreateFullscreenUI("UI");
-    } catch(e) {
-        alert("Erreur: " + e)
-    }
-    alert("gui crée");
+    const ui = BABYLON.GUI.AdvancedDynamicTexture.CreateFullscreenUI("UI");
+
     /* Inputs: */
     const inputs = {forward: false, back: false, left: false, right: false};
     if (isUserMobile()) {
