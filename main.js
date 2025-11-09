@@ -87,8 +87,8 @@ function createJoystick(ui) {
     joystickBase.thickness = 0;
     joystickBase.horizontalAligment = BABYLON.GUI.Control.HORIZONTAL_ALIGMENT_LEFT;
     joystickBase.verticalAligment = BABYLON.GUI.Control.VERTICAL_ALIGMENT_BOTTOM;
-    joystickBase.right = "70px";
-    joystickBase.top = "70px";
+    joystickBase.right = "0px";
+    joystickBase.top = "0px";
     joystickBase.alpha = 0.4;
     ui.addControl(joystickBase);
 }
