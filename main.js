@@ -1,12 +1,12 @@
 function isUserMobile() {
-    const ua = navigator.userAgent || navigator.vendor || window.opera;
+    const ua = navigator.userAgent || window.opera;
     const touch = 'ontouchstart' in window || navigator.maxTouchPoints > 0;
     const smallScreen = window.matchMedia("(max-width: 768px)").matches;
 
     const mobileRegex = /Android|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i;
     return mobileRegex.test(ua) || (touch && smallScreen);
 }
-
+alert('pas de problemes dams la fontion:' + isUserMobile().toString());
 const canvas = document.querySelector("#renderCanvas");
 
 const engine = new BABYLON.Engine(canvas, true); 
@@ -37,7 +37,7 @@ const createScene = () => {
     
     /* ATH: */
     const ui = BABYLON.GUI.AdvencedDynamicTexture.CreateFullscreenUI("UI");
-
+    alert("gui crée");
     /* Inputs: */
     const inputs = {forward: false, back: false, left: false, right: false};
     if (isUserMobile()) {
@@ -51,6 +51,7 @@ const createScene = () => {
         joystickBase.left = "30px";
         joystickBase.bottom = "30px";
         joystickBase.alpha = 0.4;
+        alert("joystick visible.")
     } 
     else {
         window.addEventListener("keydown", (e) => {
