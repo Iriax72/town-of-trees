@@ -9,7 +9,7 @@ function isUserMobile() {
 
 const canvas = document.querySelector("#renderCanvas");
 
-const engine = new BABYLON.Engine(canvas, true); 
+const engine = new BABYLON.Engine(canvas, true); o
 
 const createScene = () => {
     /* Scene: */
@@ -40,17 +40,9 @@ const createScene = () => {
 
     /* Inputs: */
     const inputs = {forward: false, back: false, left: false, right: false};
+
     if (isUserMobile()) {
-        const joystickBase = new BABYLON.GUI.Ellipse();
-        joystickBase.width = "100px";
-        joystickBase.height = "100px";
-        joystickBase.background = "grey";
-        joystickBase.thickness = 0;
-        joystickBase.horizontalAligment = BABYLON.GUI.Control.HORIZONTAL_ALIGMENT_LEFT;
-        joystickBase.verticalAligment = BABYLON.GUI.Control.VERTICAL_ALIGMENT_BOTTOM;
-        joystickBase.left = "30px";
-        joystickBase.bottom = "30px";
-        joystickBase.alpha = 0.4;
+        createJoystick();
     } 
     else {
         window.addEventListener("keydown", (e) => {
@@ -78,6 +70,19 @@ const createScene = () => {
 
     return scene;
 };
+
+function createJoystick() {
+    const joystickBase = new BABYLON.GUI.Ellipse();
+    joystickBase.width = "100px";
+    joystickBase.height = "100px";
+    joystickBase.background = "grey";
+    joystickBase.thickness = 0;
+    joystickBase.horizontalAligment = BABYLON.GUI.Control.HORIZONTAL_ALIGMENT_LEFT;
+    joystickBase.verticalAligment = BABYLON.GUI.Control.VERTICAL_ALIGMENT_BOTTOM;
+    joystickBase.left = "30px";
+    joystickBase.bottom = "30px";
+    joystickBase.alpha = 0.4;
+}
 
 const scene = createScene();
 
