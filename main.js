@@ -12,6 +12,7 @@ const canvas = document.querySelector("#renderCanvas");
 const engine = new BABYLON.Engine(canvas, true); 
 
 const createScene = () => {
+    alert("debut de createScene().")
     /* Scene: */
     const scene = new BABYLON.Scene(engine);
     scene.clearColor = new BABYLON.Color3(0.1, 0.3, 0.9);
@@ -34,7 +35,7 @@ const createScene = () => {
     camera.rotationOffset = 0;
     camera.cameraAcceleration = 0.05;
     camera.maxCameraSpeed = 10;
-    
+    alert("ath a venir")
     /* ATH: */
     const ui = BABYLON.GUI.AdvancedDynamicTexture.CreateFullscreenUI("UI");
     alert("gui crée");
