@@ -1,3 +1,11 @@
+//Intercepteurs d'erreurs
+window.onerror = function (message, source, lineno, colno, error) {
+    alert("💥 Erreur JS : " + message + "\n" + source + ":" + lineno);
+    return false;
+};
+window.addEventListener("error", (e) => alert("⚠️ " + e.message + "\n" + e.filename), true);
+window.addEventListener("unhandledrejection", (e) => alert("🚨 " + e.reason));
+
 function isUserMobile() {
     const ua = navigator.userAgent || window.opera;
     const touch = 'ontouchstart' in window || navigator.maxTouchPoints > 0;
