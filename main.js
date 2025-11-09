@@ -87,11 +87,11 @@ function createJoystick() {
     joystickBase.height = "100px";
     joystickBase.background = "grey";
     joystickBase.thickness = 0;
-    joystickBase.horizontalAligment = BABYLON.GUI.Control.HORIZONTAL_ALIGMENT_LEFT;
-    joystickBase.verticalAligment = BABYLON.GUI.Control.VERTICAL_ALIGMENT_BOTTOM;
-    joystickBase.left = "30px";
-    joystickBase.bottom = "30px";
-    joystickBase.alpha = 0.4;
+    //joystickBase.horizontalAligment = BABYLON.GUI.Control.HORIZONTAL_ALIGMENT_LEFT;
+    //joystickBase.verticalAligment = BABYLON.GUI.Control.VERTICAL_ALIGMENT_BOTTOM;
+    //joystickBase.left = "30px";
+    //joystickBase.bottom = "30px";
+    //joystickBase.alpha = 0.4;
     alert("createjoystick() terminé")
 }
 
