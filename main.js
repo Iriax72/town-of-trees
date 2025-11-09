@@ -50,7 +50,7 @@ const createScene = () => {
     const inputs = {forward: false, back: false, left: false, right: false};
 
     if (isUserMobile()) {
-        createJoystick();
+        createJoystick(ui);
     } 
     else {
         window.addEventListener("keydown", (e) => {
@@ -79,20 +79,18 @@ const createScene = () => {
     return scene;
 };
 
-function createJoystick() {
-    alert("createjoystick appelé")
+function createJoystick(ui) {
     const joystickBase = new BABYLON.GUI.Ellipse();
-    alert("ellipse crée")
     joystickBase.width = "100px";
     joystickBase.height = "100px";
     joystickBase.background = "grey";
     joystickBase.thickness = 0;
-    //joystickBase.horizontalAligment = BABYLON.GUI.Control.HORIZONTAL_ALIGMENT_LEFT;
-    //joystickBase.verticalAligment = BABYLON.GUI.Control.VERTICAL_ALIGMENT_BOTTOM;
-    //joystickBase.left = "30px";
-    //joystickBase.bottom = "30px";
-    //joystickBase.alpha = 0.4;
-    alert("createjoystick() terminé")
+    joystickBase.horizontalAligment = BABYLON.GUI.Control.HORIZONTAL_ALIGMENT_LEFT;
+    joystickBase.verticalAligment = BABYLON.GUI.Control.VERTICAL_ALIGMENT_BOTTOM;
+    joystickBase.left = "30px";
+    joystickBase.bottom = "30px";
+    joystickBase.alpha = 0.4;
+    ui.addControl(joystickBase);
 }
 
 const scene = createScene();
