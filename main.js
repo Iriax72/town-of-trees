@@ -72,7 +72,9 @@ const createScene = () => {
 };
 
 function createJoystick() {
+    alert("createjoystick appelé")
     const joystickBase = new BABYLON.GUI.Ellipse();
+    alert("ellipse crée")
     joystickBase.width = "100px";
     joystickBase.height = "100px";
     joystickBase.background = "grey";
@@ -82,6 +84,7 @@ function createJoystick() {
     joystickBase.left = "30px";
     joystickBase.bottom = "30px";
     joystickBase.alpha = 0.4;
+    alert("createjoystick() terminé")
 }
 
 const scene = createScene();
