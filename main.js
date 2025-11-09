@@ -44,7 +44,7 @@ const createScene = () => {
     camera.maxCameraSpeed = 10;
     
     /* ATH: */
-    const ui = BABYLON.GUI.AdvancedDynamicTexture.CreateFullscreenUI("UI");
+    const ui = BABYLON.GUI.AdvancedDynamicTexture.CreateFullscreenUI("UI", true, scene);
 
     /* Inputs: */
     const inputs = {forward: false, back: false, left: false, right: false};
