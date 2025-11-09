@@ -17,7 +17,7 @@ function isUserMobile() {
 
 const canvas = document.querySelector("#renderCanvas");
 
-const engine = new BABYLON.Engine(canvas, true); o
+const engine = new BABYLON.Engine(canvas, true);
 
 const createScene = () => {
     /* Scene: */
