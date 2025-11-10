@@ -130,7 +130,7 @@ function createJoystick(ui) {
         smallJoystick.top = currentPos.y + "px";
     });
 
-    smallJoystick.onPointerUpObservalble.add(() => {
+    smallJoystick.onPointerUpObservable.add(() => {
         isJoystickUsed = false;
         smallJoystick.top = 0;
         smallJoystick.left = 0;
