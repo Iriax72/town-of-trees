@@ -103,31 +103,32 @@ function createJoystick(ui) {
 
     let isJoystickUsed = false;
     let startPos = BABYLON.Vector2.Zero();
-    let currentPos = BABYLON.Vector2.Zero();
+    let relPos = BABYLON.Vector2.Zero();
 
     smallJoystick.onPointerDownObservable.add((coos) => {
         isJoystickUsed = true;
-        startPos.x = coos.x;
-        startPos.y = coos.y;
-        currentPos.x = coos.x;
-        currentPos.y = coos.y;
+        relPos.x = coos.x;
+        relPos.y = coos.y;
     });
 
     smallJoystick.onPointerMoveObservable.add((coos) => {
         if (!isJoystickUsed) return;
 
-        currentPos.x = coos.x - startPos.x;
-        currentPos.y = coos.y - startPos.y;
+        const centerX = joystickBase._currentMeasure.width /2;
+        const centerY = joystickBase._currentMeasure.height /2;
 
-        let dist = Math.sqrt(currentPos.x ** 2 + currentPos.y ** 2);
+        relPos.x = coos.x - centerX;
+        relPos.y = coos.y - centerY;
+
+        let dist = Math.sqrt(relPos.x ** 2 + relPos.y ** 2);
         const rayon = joystickBase.width / 2;
         if (dist > rayon) {
-            currentPos.x = currentPos.x / dist * rayon;
-            currentPos.y = currentPos.y / dist * rayon;
+            relPos.x = relPos.x / dist * rayon;
+            relPos.y = relPos.y / dist * rayon;
         }
 
-        smallJoystick.left = currentPos.x + "px";
-        smallJoystick.top = currentPos.y + "px";
+        smallJoystick.left = relPos.x + "px";
+        smallJoystick.top = relPos.y + "px";
     });
 
     smallJoystick.onPointerUpObservable.add(() => {
