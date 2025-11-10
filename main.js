@@ -68,8 +68,9 @@ const createScene = () => {
     }
 
     /* MaJ of the player's position */
+    const playerSpeed = 0.1
     scene.onBeforeRenderObservable.add(() => {
-        const playerSpeed = 0.1;
+        // ! ca prend pas en compte le deltatime
         if (inputs.forward) player.position.z += playerSpeed;
         if (inputs.back) player.position.z -= playerSpeed;
         if (inputs.left) player.position.x -= playerSpeed;
@@ -88,7 +89,7 @@ function createJoystick(ui) {
     joystickBase.horizontalAlignment = BABYLON.GUI.Control.HORIZONTAL_ALIGNMENT_LEFT;
     joystickBase.verticalAlignment = BABYLON.GUI.Control.VERTICAL_ALIGNMENT_BOTTOM;
     joystickBase.right = "70px";
-    joystickBase.bottom = "70px";
+    joystickBase.top = "70px";
     joystickBase.alpha = 0.4;
     ui.addControl(joystickBase);
 
