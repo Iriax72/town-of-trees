@@ -113,7 +113,7 @@ function createJoystick(ui) {
         currentPos.y = coos.y;
     });
 
-    smallJoystick.onPointerMoveObservable((coos) => {
+    smallJoystick.onPointerMoveObservable.add((coos) => {
         if (!isJoystickUsed) return;
 
         currentPos.x = coos.x - startPos.x;
