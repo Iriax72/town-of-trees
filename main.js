@@ -105,7 +105,7 @@ function createJoystick(ui) {
     let startPos = BABYLON.Vector2.Zero();
     let currentPos = BABYLON.Vector2.Zero();
 
-    smallJoystick.onPointerDownObservalble.add((coos) => {
+    smallJoystick.onPointerDownObservable.add((coos) => {
         isJoystickUsed = true;
         startPos.x = coos.x;
         startPos.y = coos.y;
