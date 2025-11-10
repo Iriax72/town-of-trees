@@ -100,6 +100,41 @@ function createJoystick(ui) {
     smallJoystick.thickness = 0;
     smallJoystick.alpha = 0.8;
     joystickBase.addControl(smallJoystick);
+
+    let isJoystickUsed = false;
+    let startPos = BABYLON.Vector2.Zero();
+    let currentPos = BABYLON.Vector2.Zero();
+
+    smallJoystick.onPointerDownObservalble.add((coos) => {
+        isJoystickUsed = true;
+        startPos.x = coos.x;
+        startPos.y = coos.y;
+        currentPos.x = coos.x;
+        currentPos.y = coos.y;
+    });
+
+    smallJoystick.onPointerMoveObservalble((coos) => {
+        if (!isJoystickUsed) return;
+
+        currentPos.x = coos.x - startPos.x;
+        currentPos.y = coos.y - startPos.y;
+
+        let dist = Math.sqrt(currentPos.x ** 2 + currentPos.y ** 2);
+        const rayon = joystickBase.width / 2;
+        if (dist > rayon) {
+            currentPos.x = currentPos.x / dist * rayon;
+            currentPos.y = currentPos.y / dist * rayon;
+        }
+
+        smallJoystick.left = currentPos.x + "px";
+        smallJoystick.top = currentPos.y + "px";
+    });
+
+    smallJoystick.onPointerUpObservalble.add(() => {
+        isJoystickUsed = false;
+        smallJoystick.top = 0;
+        smallJoystick.left = 0;
+    });
 }
 
 const scene = createScene();
