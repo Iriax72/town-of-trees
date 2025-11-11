@@ -106,14 +106,13 @@ function createJoystick(ui) {
     let relPos = BABYLON.Vector2.Zero();
 
     joystickBase.onPointerDownObservable.add((coos) => {
-        alert("pointerDown")
         isJoystickUsed = true;
         relPos.x = coos.x;
         relPos.y = coos.y;
-        alert("fin de pointerDown")
     });
 
     joystickBase.onPointerMoveObservable.add((coos) => {
+        alert("pointerMove")
         if (!isJoystickUsed) return;
 
         const centerX = joystickBase._currentMeasure.width /2;
@@ -131,6 +130,7 @@ function createJoystick(ui) {
 
         smallJoystick.left = relPos.x + "px";
         smallJoystick.top = relPos.y + "px";
+        alert("fin de pointerMove")
     });
 
     joystickBase.onPointerUpObservable.add(() => {
