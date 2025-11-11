@@ -106,20 +106,18 @@ function createJoystick(ui) {
     let relPos = BABYLON.Vector2.Zero();
 
     joystickBase.onPointerDownObservable.add((coos) => {
-        isJoystickUsed = true;
         relPos.x = coos.x;
         relPos.y = coos.y;
+        window.addEventListener("pointermove", onMove);
+        window.addEventListener("pointerup", onUp);
     });
 
-    joystickBase.onPointerMoveObservable.add((coos) => {
-        alert("pointerMove")
-        if (!isJoystickUsed) return;
-
+    function onMove(e) {
         const centerX = joystickBase._currentMeasure.width /2;
         const centerY = joystickBase._currentMeasure.height /2;
 
-        relPos.x = coos.x - centerX;
-        relPos.y = coos.y - centerY;
+        relPos.x = e.clientX - centerX;
+        relPos.y = e.clientY - centerY;
 
         let dist = Math.sqrt(relPos.x ** 2 + relPos.y ** 2);
         const rayon = joystickBase.width / 2;
@@ -130,14 +128,14 @@ function createJoystick(ui) {
 
         smallJoystick.left = relPos.x + "px";
         smallJoystick.top = relPos.y + "px";
-        alert("fin de pointerMove")
-    });
+    };
 
-    joystickBase.onPointerUpObservable.add(() => {
-        isJoystickUsed = false;
+    function onUp() {
+        window.removeEventListener("pointermove", onMove);
+        window.removeEventListener("pointerup", onUp);
         smallJoystick.top = 0;
         smallJoystick.left = 0;
-    });
+    };
 }
 
 const scene = createScene();
