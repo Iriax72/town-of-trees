@@ -106,9 +106,11 @@ function createJoystick(ui) {
     let relPos = BABYLON.Vector2.Zero();
 
     joystickBase.onPointerDownObservable.add((coos) => {
+        alert("pointerDown")
         isJoystickUsed = true;
         relPos.x = coos.x;
         relPos.y = coos.y;
+        alert("fin de pointerDown")
     });
 
     joystickBase.onPointerMoveObservable.add((coos) => {
