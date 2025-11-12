@@ -110,7 +110,7 @@ function createJoystick(ui) {
     smallJoystick.background = "grey";
     smallJoystick.thickness = 0;
     smallJoystick.alpha = 0.8;
-    joystickBase.addControl(smallJoystick);
+    ui.addControl(smallJoystick);
 
     joystickBase.onPointerDownObservable.add((coos) => {
         window.addEventListener("pointermove", onMove);
@@ -134,15 +134,15 @@ function createJoystick(ui) {
             relY = (relY / dist) * radius;
         }
 
-        smallJoystick.left = relX + smallJoystick._currentMeasure.width/2 + "px";
-        smallJoystick.top = relY + smallJoystick._currentMeasure.height/2 + "px";
+        smallJoystick.left = relX + smallJoystick._currentMeasure.width/2 + baseCenterX + "px";
+        smallJoystick.top = relY + smallJoystick._currentMeasure.height/2 + baseCenterY + "px";
     };
 
     function onUp() {
         window.removeEventListener("pointermove", onMove);
         window.removeEventListener("pointerup", onUp);
-        smallJoystick.top = 0;
-        smallJoystick.left = 0;
+        smallJoystick.top = joystickBase.top;
+        smallJoystick.left = joystickBase.left;
     };
 }
 
