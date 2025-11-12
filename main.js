@@ -15,6 +15,14 @@ function isUserMobile() {
     return mobileRegex.test(ua) || (touch && smallScreen);
 }
 
+function getPointerPos(e) {
+    if(isUserMobile()) {
+        return {x: e.touches[0].clientX, y: e.touches[0].clientY};
+    } else {
+        return {x: e.clientX, y: e.clientY};
+    }
+}
+
 const canvas = document.querySelector("#renderCanvas");
 
 const engine = new BABYLON.Engine(canvas, true);
