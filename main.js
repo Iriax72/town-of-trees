@@ -101,6 +101,7 @@ function createJoystick(ui) {
     joystickBase.left = "70px";
     joystickBase.top = "-70px";
     joystickBase.alpha = 0.4;
+    joystickBase.clipChildren = false;
     ui.addControl(joystickBase);
 
     const smallJoystick = new BABYLON.GUI.Ellipse();
