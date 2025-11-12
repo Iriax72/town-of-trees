@@ -118,7 +118,7 @@ function createJoystick(ui) {
     smallJoystick.alpha = 0.8;
     joystickContainer.addControl(smallJoystick);
 
-    joystickBase.onPointerDownObservable.add((coos) => {
+    joystickContainer.onPointerDownObservable.add((coos) => {
         window.addEventListener("pointermove", onMove);
         window.addEventListener("pointerup", onUp);
     });
