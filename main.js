@@ -141,8 +141,8 @@ function createJoystick(ui) {
     function onUp() {
         window.removeEventListener("pointermove", onMove);
         window.removeEventListener("pointerup", onUp);
-        smallJoystick.top = joystickBase._currentMeasure.top + joystickBase._currentMeasure.height/2 - smallJoystick._currentMeasure.height/2;
-        smallJoystick.left = joystickBase._currentMeasure.left + joystickBase._currentMeasure.width/2 - smallJoystick._currentMeasure.width/2;
+        smallJoystick.top = 0;
+        smallJoystick.left = 0;
     };
 }
 
