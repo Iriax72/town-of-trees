@@ -102,8 +102,6 @@ function createJoystick(ui) {
     joystickBase.addControl(smallJoystick);
 
     joystickBase.onPointerDownObservable.add((coos) => {
-        relPos.x = coos.x;
-        relPos.y = coos.y;
         window.addEventListener("pointermove", onMove);
         window.addEventListener("pointerup", onUp);
     });
