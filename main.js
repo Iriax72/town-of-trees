@@ -110,7 +110,7 @@ function createJoystick(ui) {
     smallJoystick.background = "grey";
     smallJoystick.thickness = 0;
     smallJoystick.alpha = 0.8;
-    ui.addControl(smallJoystick);
+    joystickBase.addControl(smallJoystick);
 
     joystickBase.onPointerDownObservable.add((coos) => {
         window.addEventListener("pointermove", onMove);
@@ -119,10 +119,10 @@ function createJoystick(ui) {
 
     function onMove(e) {
         const {x, y} = getPointerPos(e);
-        const measure = joystickBase._currentMeasure;
+        const measureBase = joystickBase._currentMeasure;
 
-        const baseCenterX = measure.left + measure.width/2;
-        const baseCenterY = measure.top + measure.height/2;
+        const baseCenterX = measureBase.left + measureBase.width/2;
+        const baseCenterY = measureBase.top + measureBase.height/2;
 
         let relX = x - baseCenterX;
         let relY = y - baseCenterY;
@@ -134,8 +134,8 @@ function createJoystick(ui) {
             relY = (relY / dist) * radius;
         }
 
-        smallJoystick.left = relX - smallJoystick._currentMeasure.width/2 + baseCenterX + "px";
-        smallJoystick.top = relY - smallJoystick._currentMeasure.height/2 + baseCenterY + "px";
+        smallJoystick.left = relX + smallJoystick._currentMeasure.width/2 + "px";
+        smallJoystick.top = relY + smallJoystick._currentMeasure.height/2 + "px";
     };
 
     function onUp() {
