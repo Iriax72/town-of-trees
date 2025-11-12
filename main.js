@@ -16,11 +16,13 @@ function isUserMobile() {
 }
 
 function getPointerPos(e) {
-    if(isUserMobile()) {
+    if(e.touches && e.touches.length > 0) {
         return {x: e.touches[0].clientX, y: e.touches[0].clientY};
-    } else {
+    } 
+    if(e.clientX !== undefined && e.clientY !== undefined) {
         return {x: e.clientX, y: e.clientY};
     }
+    return {x: 0, y: 0};
 }
 
 const canvas = document.querySelector("#renderCanvas");
