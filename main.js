@@ -93,7 +93,7 @@ const createScene = () => {
 function createJoystick(ui) {
     const joystickBase = new BABYLON.GUI.Ellipse();
     joystickBase.width = "120px";
-    joystickBase.height = "130px";
+    joystickBase.height = "120px";
     joystickBase.background = "grey";
     joystickBase.thickness = "15px";
     joystickBase.color = "black";
