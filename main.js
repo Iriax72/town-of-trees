@@ -95,6 +95,7 @@ function createJoystick(ui) {
     joystickContainer.width = "150px";
     joystickContainer.height = "150px";
     joystickContainer.background = "blue";
+    joystickContainer.alpha = 0.1;
     joystickContainer.thickness = 0;
     joystickContainer.clipChildren = false;
     joystickContainer.horizontalAlignment = BABYLON.GUI.Control.HORIZONTAL_ALIGNMENT_LEFT;
