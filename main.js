@@ -135,8 +135,8 @@ function createJoystick(ui) {
             relPos.scaleInPlace(radius);
         }
 
-        smallJoystick.left = relPos.x + measureSmall.width/2 + "px";
-        smallJoystick.top = relPos.y + measureSmall.height/2 + "px";
+        smallJoystick.left = relPos.x /* + measureSmall.width/2 */ + "px";
+        smallJoystick.top = relPos.y /* + measureSmall.height/2 */ + "px";
     };
 
     function onUp() {
