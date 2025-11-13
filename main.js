@@ -89,6 +89,7 @@ const createScene = () => {
 
     return scene;
 };
+
 function createJoystick(ui) {
     const joystickBase = new BABYLON.GUI.Ellipse();
     joystickBase.width = "150px";
@@ -101,6 +102,7 @@ function createJoystick(ui) {
     joystickBase.verticalAlignment = BABYLON.GUI.Control.VERTICAL_ALIGNMENT_BOTTOM;
     joystickBase.left = "50px";
     joystickBase.top = "-50px";
+    joystickBase.clipChildren = false;
     ui.addControl(joystickBase);
 
     const smallJoystick = new BABYLON.GUI.Ellipse();
@@ -109,11 +111,7 @@ function createJoystick(ui) {
     smallJoystick.background = "grey";
     smallJoystick.thickness = 0;
     smallJoystick.alpha = 0.95;
-    smallJoystick.horizontalAlignment = BABYLON.GUI.Control.HORIZONTAL_ALIGNMENT_LEFT;
-    smallJoystick.verticalAlignment = BABYLON.GUI.Control.VERTICAL_ALIGNMENT_BOTTOM;
-    smallJoystick.left = "95px";
-    smallJoystick.top = "-95px";
-    ui.addControl(smallJoystick);
+    joystickBase.addControl(smallJoystick);
 
     joystickBase.onPointerDownObservable.add(() => {
         window.addEventListener("pointermove", onMove);
@@ -137,8 +135,8 @@ function createJoystick(ui) {
             relPos.scaleInPlace(radius);
         }
 
-        smallJoystick.left = 95 + relPos.x + "px";
-        smallJoystick.top = -95 + relPos.y + "px";
+        smallJoystick.left = relPos.x + "px";
+        smallJoystick.top = relPos.y + "px";
     };
 
     function onUp() {
