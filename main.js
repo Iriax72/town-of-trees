@@ -91,19 +91,27 @@ const createScene = () => {
 };
 
 function createJoystick(ui) {
+    const joystickContainer = new BABYLON.GUI.Rectangle();
+    joystickContainer.width = "150px";
+    joystickContainer.height = "150px";
+    joystickContainer.background = "transparent";
+    joystickContainer.thickness = 0;
+    joystickContainer.clipChildren = false;
+    joystickContainer.horizontalAlignment = BABYLON.GUI.Control.HORIZONTAL_ALIGNMENT_LEFT;
+    joystickContainer.verticalAlignment = BABYLON.GUI.Control.VERTICAL_ALIGNMENT_BOTTOM;
+    joystickContainer.left = "30px";
+    joystickContainer.top = "30px";
+    ui.addControl(joystickContainer);
+
     const joystickBase = new BABYLON.GUI.Ellipse();
     joystickBase.width = "120px";
     joystickBase.height = "120px";
     joystickBase.background = "grey";
     joystickBase.thickness = "15px";
     joystickBase.color = "black";
-    joystickBase.horizontalAlignment = BABYLON.GUI.Control.HORIZONTAL_ALIGNMENT_LEFT;
-    joystickBase.verticalAlignment = BABYLON.GUI.Control.VERTICAL_ALIGNMENT_BOTTOM;
-    joystickBase.left = "30px";
-    joystickBase.top = "-30px";
     joystickBase.alpha = 0.4;
     joystickBase.clipChildren = false;
-    ui.addControl(joystickBase);
+    joystickContainer.addControl(joystickBase);
 
     const smallJoystick = new BABYLON.GUI.Ellipse();
     smallJoystick.width = "50px";
@@ -120,7 +128,6 @@ function createJoystick(ui) {
 
     function onMove(e) {
         const pointerCoo = getPointerPos(e);
-        const measureSmall = smallJoystick._currentMeasure;
         const measureBase = joystickBase._currentMeasure;
 
         const baseCenterX = measureBase.left + measureBase.width/2;
@@ -136,8 +143,8 @@ function createJoystick(ui) {
             relPos.scaleInPlace(radius);
         }
 
-        smallJoystick.left = relPos.x /* + measureSmall.width/2 */ + "px";
-        smallJoystick.top = relPos.y /* + measureSmall.height/2 */ + "px";
+        smallJoystick.left = relPos.x + "px";
+        smallJoystick.top = relPos.y + "px";
     };
 
     function onUp() {
