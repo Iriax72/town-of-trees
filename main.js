@@ -120,7 +120,7 @@ function createJoystick(ui) {
     smallJoystick.background = "grey";
     smallJoystick.thickness = 0;
     smallJoystick.alpha = 0.95;
-    joystickBase.addControl(smallJoystick);
+    joystickContainer.addControl(smallJoystick);
 
     joystickBase.onPointerDownObservable.add((coos) => {
         window.addEventListener("pointermove", onMove);
