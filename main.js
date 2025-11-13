@@ -92,8 +92,8 @@ const createScene = () => {
 
 function createJoystick(ui) {
     const joystickContainer = new BABYLON.GUI.Rectangle();
-    joystickContainer.width = "220px";
-    joystickContainer.height = "220px";
+    joystickContainer.width = "100%";
+    joystickContainer.height = "100%";
     joystickContainer.background = "transparent";
     joystickContainer.alpha = 0.1;
     joystickContainer.thickness = 0;
