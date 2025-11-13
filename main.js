@@ -129,10 +129,10 @@ function createJoystick(ui) {
         let relPos = new BABYLON.Vector2(pointerCoo.x-baseCenter.x, pointerCoo.y-baseCenter.y);
 
         const dist = relPos.length();
-        const radius = joystickBase.width / 2;
+        const radius = measureBase.width / 2;
         if (dist > radius) {
             relPos.normalize();
-            relPos *= radius;
+            relPos.scaleInPlace(radius);
         }
 
         smallJoystick.left = relPos.x + measureSmall.width/2 + "px";
