@@ -89,23 +89,7 @@ const createScene = () => {
 
     return scene;
 };
-
 function createJoystick(ui) {
-    const joystickContainer = new BABYLON.GUI.Rectangle();
-    joystickContainer.width = "100%";
-    joystickContainer.height = "100%";
-    joystickContainer.background = "transparent";
-    joystickContainer.alpha = 0.1;
-    joystickContainer.thickness = 0;
-    joystickContainer.clipChildren = false;
-    joystickContainer.horizontalAlignment = BABYLON.GUI.Control.HORIZONTAL_ALIGNMENT_LEFT;
-    joystickContainer.verticalAlignment = BABYLON.GUI.Control.VERTICAL_ALIGNMENT_BOTTOM;
-    joystickContainer.left = "30px";
-    joystickContainer.top = "30px";
-    joystickContainer.adaptWidthToChildren = false;
-    joystickContainer.adaptHeightToChildren = false;
-    ui.addControl(joystickContainer);
-
     const joystickBase = new BABYLON.GUI.Ellipse();
     joystickBase.width = "150px";
     joystickBase.height = "150px";
@@ -113,8 +97,11 @@ function createJoystick(ui) {
     joystickBase.thickness = "15px";
     joystickBase.color = "black";
     joystickBase.alpha = 0.4;
-    joystickBase.clipChildren = false;
-    joystickContainer.addControl(joystickBase);
+    joystickBase.horizontalAlignment = BABYLON.GUI.Control.HORIZONTAL_ALIGNMENT_LEFT;
+    joystickBase.verticalAlignment = BABYLON.GUI.Control.VERTICAL_ALIGNMENT_BOTTOM;
+    joystickBase.left = "50px";
+    joystickBase.top = "-50px";
+    ui.addControl(joystickBase);
 
     const smallJoystick = new BABYLON.GUI.Ellipse();
     smallJoystick.width = "60px";
@@ -122,9 +109,13 @@ function createJoystick(ui) {
     smallJoystick.background = "grey";
     smallJoystick.thickness = 0;
     smallJoystick.alpha = 0.95;
-    joystickContainer.addControl(smallJoystick);
+    smallJoystick.horizontalAlignment = BABYLON.GUI.Control.HORIZONTAL_ALIGNMENT_LEFT;
+    smallJoystick.verticalAlignment = BABYLON.GUI.Control.VERTICAL_ALIGNMENT_BOTTOM;
+    smallJoystick.left = "95px";
+    smallJoystick.top = "-95px";
+    ui.addControl(smallJoystick);
 
-    joystickBase.onPointerDownObservable.add((coos) => {
+    joystickBase.onPointerDownObservable.add(() => {
         window.addEventListener("pointermove", onMove);
         window.addEventListener("pointerup", onUp);
     });
@@ -146,8 +137,8 @@ function createJoystick(ui) {
             relPos.scaleInPlace(radius);
         }
 
-        smallJoystick.left = relPos.x + "px";
-        smallJoystick.top = relPos.y + "px";
+        smallJoystick.left = 95 + relPos.x + "px";
+        smallJoystick.top = -95 + relPos.y + "px";
     };
 
     function onUp() {
