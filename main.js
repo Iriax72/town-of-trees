@@ -17,12 +17,12 @@ function isUserMobile() {
 
 function getPointerPos(e) {
     if(e.touches && e.touches.length > 0) {
-        return {x: e.touches[0].clientX, y: e.touches[0].clientY};
+        return new BABYLON.Vector2(e.touches[0].clientX, e.touches[0].clientY);
     } 
     if(e.clientX !== undefined && e.clientY !== undefined) {
-        return {x: e.clientX, y: e.clientY};
+        return new BABYLON.Vector2(e.clientX, e.clientY);
     }
-    return {x: 0, y: 0};
+    return new BABYLON.Vector2.Zero();
 }
 
 const canvas = document.querySelector("#renderCanvas");
@@ -118,24 +118,25 @@ function createJoystick(ui) {
     });
 
     function onMove(e) {
-        const {x, y} = getPointerPos(e);
+        const pointerCoo = getPointerPos(e);
+        const measureSmall = smallJoystick._currentMeasure;
         const measureBase = joystickBase._currentMeasure;
 
         const baseCenterX = measureBase.left + measureBase.width/2;
         const baseCenterY = measureBase.top + measureBase.height/2;
+        const baseCenter = new BABYLON.Vector2(baseCenterX, baseCenterY);
 
-        let relX = x - baseCenterX;
-        let relY = y - baseCenterY;
+        let relPos = new BABYLON.Vector2(pointerCoo.x-baseCenter.x, pointerCoo.y-baseCenter.y);
 
-        const dist = Math.sqrt(relX ** 2 + relY ** 2);
+        const dist = relPos.length();
         const radius = joystickBase.width / 2;
         if (dist > radius) {
-            relX = (relX / dist) * radius;
-            relY = (relY / dist) * radius;
+            relPos.normalize();
+            relPos *= radius;
         }
 
-        smallJoystick.left = relX + smallJoystick._currentMeasure.width/2 + "px";
-        smallJoystick.top = relY + smallJoystick._currentMeasure.height/2 + "px";
+        smallJoystick.left = relPos.x + measureSmall.width/2 + "px";
+        smallJoystick.top = relPos.y + measureSmall.height/2 + "px";
     };
 
     function onUp() {
