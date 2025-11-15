@@ -92,8 +92,8 @@ const createScene = () => {
 
 function createJoystick(ui) {
     const joystickBase = new BABYLON.GUI.Ellipse();
-    joystickBase.width = "120px";
-    joystickBase.height = "120px";
+    joystickBase.width = "18%";
+    joystickBase.height = "18%";
     joystickBase.background = "grey";
     joystickBase.thickness = "15px";
     joystickBase.color = "black";
@@ -106,8 +106,8 @@ function createJoystick(ui) {
     ui.addControl(joystickBase);
 
     const smallJoystick = new BABYLON.GUI.Ellipse();
-    smallJoystick.width = "50px";
-    smallJoystick.height = "50px";
+    smallJoystick.width = "45%";
+    smallJoystick.height = "45%";
     smallJoystick.background = "grey";
     smallJoystick.thickness = 0;
     smallJoystick.alpha = 0.95;
